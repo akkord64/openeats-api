@@ -34,7 +34,15 @@ class Recipe(models.Model):
     :rating: = Rating of the recipe
     :pub_date: = When the recipe was created
     :update_date: = When the recipe was updated
-    """
+    :valueCalories : = Calorie amount
+    :valueTotalFat : = Total Fat
+    :valueSatFat : = Total Saturated Fat
+    :valueCholesterol : = Total Cholesterol
+    :valueSodium : = Total Sodium
+    :valueTotalCarb : = Total Carbohydrates
+    :valueFibers : = Total Fiber
+    :valueSugars : Total Sugar
+    :valueProteins : Total Proteins"""
     title = models.CharField(_("Recipe Title"), max_length=250)
     slug = AutoSlugField(_('slug'), populate_from='title', unique=True)
     author = models.ForeignKey(User, on_delete=models.CASCADE, null=True)
@@ -57,6 +65,15 @@ class Recipe(models.Model):
     pub_date = models.DateTimeField(auto_now_add=True)
     update_date = models.DateTimeField(auto_now=True)
     public = models.BooleanField(default=True)
+    valueCalories = models.IntegerField(_('valueCalories '), help_text="enter the per serving calories value", default=0)
+    valueTotalFat = models.IntegerField(_('valueTotalFat'), help_text="enter the per serving total fat value", default=0)
+    valueSatFat = models.IntegerField(_('valueSatFat'), help_text="enter the per serving saturated fat value", default=0)
+    valueCholesterol = models.IntegerField(_('valueCholesterol'), help_text="enter the per serving cholesterol value", default=0)
+    valueSodium = models.IntegerField(_('valueSodium'), help_text="enter the per serving sodium value", default=0)
+    valueTotalCarb = models.IntegerField(_('valueTotalCarb'), help_text="enter the per serving total carbohydrate value", default=0)
+    valueFibers = models.IntegerField(_('valueFibers'), help_text="enter the per serving fiber value", default=0)
+    valueSugars = models.IntegerField(_('valueSugars'), help_text="enter the per serving sugar value", default=0)
+    valueProteins = models.IntegerField(_('valueProteins'), help_text="enter the per serving protein value", default=0)
 
     class Meta:
         ordering = ['-pub_date', 'title']
